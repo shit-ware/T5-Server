@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{17F0C96D-58ED-4039-8352-6CDBDC915B71}</ProjectGuid>
+    <RootNamespace>clientdll</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v100</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <EmbedManifest>true</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command>pushd "$(SolutionDir)\..\deps\tools"
+popd
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\..\..\terminal\libnp\include;$(SolutionDir)\..\deps\include\osw\;$(SolutionDir)\..\deps\include\;$(SolutionDir)\..\deps\include\tools\;$(SolutionDir)\..\deps\include\np\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CLIENTDLL_EXPORTS;_WINDLL</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>zlib.lib;ssleay32.lib;libeay32.lib;credui.lib;libcurl.lib;wldap32.lib;ws2_32.lib;winmm.lib;shlwapi.lib;libnp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\..\..\terminal\libnp\project\vc9\normal;$(SolutionDir)\..\deps\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>if "%COMPUTERNAME%" == "IAIN-PC" (
+   copy /y "$(TargetPath)" "D:\b3 project\t5\steam_api.dll"
+)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Hooking.cpp" />
+    <ClCompile Include="T5.cpp" />
+    <ClCompile Include="PatchT5.cpp" />
+    <ClCompile Include="PatchT5Branding.cpp" />
+    <ClCompile Include="PatchT5Commands.cpp" />
+    <ClCompile Include="PatchT5Download.cpp" />
+    <ClCompile Include="PatchT5NoBorder.cpp" />
+    <ClCompile Include="PatchT5SuicideMessages.cpp" />
+    <ClCompile Include="PatchT5Validate.cpp" />
+    <ClCompile Include="PatchSP.cpp" />
+    <ClCompile Include="PatchSPBranding.cpp" />
+    <ClCompile Include="steam_api.cpp" />
+    <ClCompile Include="SteamApps003.cpp" />
+    <ClCompile Include="SteamBase.cpp" />
+    <ClCompile Include="SteamFriends007.cpp" />
+    <ClCompile Include="SteamGameServer010.cpp" />
+    <ClCompile Include="SteamMasterServerUpdater001.cpp" />
+    <ClCompile Include="SteamNetworking004.cpp" />
+    <ClCompile Include="SteamUser014.cpp" />
+    <ClCompile Include="SteamUserStats007.cpp" />
+    <ClCompile Include="SteamUtils005.cpp" />
+    <ClCompile Include="anticode.cpp" />
+    <ClCompile Include="Auth.cpp" />
+    <ClCompile Include="diskinfo.cpp" />
+    <ClCompile Include="hwbrk.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Detections.cpp" />
+    <ClCompile Include="GetCommandLine.cpp" />
+    <ClCompile Include="T5sph4x.cpp" />
+    <ClCompile Include="Tools.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\deps\tools\buildnumber.h" />
+    <ClInclude Include="SteamApps003.h" />
+    <ClInclude Include="SteamBase.h" />
+    <ClInclude Include="SteamFriends007.h" />
+    <ClInclude Include="SteamGameServer010.h" />
+    <ClInclude Include="SteamMasterServerUpdater001.h" />
+    <ClInclude Include="SteamNetworking004.h" />
+    <ClInclude Include="SteamUser014.h" />
+    <ClInclude Include="SteamUserStats007.h" />
+    <ClInclude Include="SteamUtils005.h" />
+    <ClInclude Include="Hooking.h" />
+    <ClInclude Include="T5.h" />
+    <ClInclude Include="diskinfo.h" />
+    <ClInclude Include="hwbrk.h" />
+    <ClInclude Include="stdinc.h" />
+    <ClInclude Include="Utils.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
